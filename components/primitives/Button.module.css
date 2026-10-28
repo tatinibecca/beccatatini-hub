@@ -1,0 +1,106 @@
+/*
+ * Button — controle: --radius-sm. Texto: text-label + weight-medium.
+ * Borda sempre presente (transparente no primário) para os 3 variantes terem a mesma altura:
+ * md = 20 (line-height) + 2×10 (padding) + 2×2 (borda) = 44px · sm = 20 + 2×4 + 2×2 = 32px.
+ * Os seletores [data-force] existem só para a página /dev/primitives exibir estados fixos.
+ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: var(--border-width-strong) solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
+}
+
+.md { padding: calc(var(--space-3) - var(--border-width-strong)) var(--space-4); }
+.sm { padding: calc(var(--space-2) - var(--border-width-strong)) var(--space-3); }
+
+.icon { width: var(--space-4); height: var(--space-4); flex-shrink: 0; }
+
+.button:focus-visible,
+.button[data-force="focus"] {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Primário */
+.primary {
+  background: var(--action-primary);
+  color: var(--action-on-primary);
+}
+.primary:hover,
+.primary[data-force="hover"],
+.primary:active,
+.primary[data-force="active"] {
+  background: var(--action-primary-hover);
+}
+
+/* Secundário */
+.secondary {
+  background: transparent;
+  border-color: var(--action-primary);
+  color: var(--text-accent);
+}
+.secondary:hover,
+.secondary[data-force="hover"] {
+  background: var(--surface-muted);
+  border-color: var(--action-primary-hover);
+  color: var(--action-primary-hover);
+}
+.secondary:active,
+.secondary[data-force="active"] {
+  background: var(--border-subtle);
+  border-color: var(--action-primary-hover);
+  color: var(--action-primary-hover);
+}
+
+/* Terciário (ghost) — surface-muted é quase igual ao canvas, por isso o hover usa border-subtle */
+.ghost {
+  background: transparent;
+  color: var(--text-primary);
+}
+.ghost:hover,
+.ghost[data-force="hover"] {
+  background: var(--border-subtle);
+}
+.ghost:active,
+.ghost[data-force="active"] {
+  background: var(--border-subtle);
+  border-color: var(--text-secondary);
+}
+
+/* Desabilitado: mesmo visual para os 3 variantes */
+.button:disabled,
+.button[aria-disabled="true"]:not([aria-busy="true"]) {
+  background: var(--surface-muted);
+  border-color: var(--border-subtle);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+/* Carregando: mantém o visual do variante, bloqueia nova ação */
+.button[aria-busy="true"] { cursor: progress; }
+
+.spinner {
+  width: var(--space-4);
+  height: var(--space-4);
+  animation: spin calc(var(--motion-slow) * 3) linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation: none; }
+}

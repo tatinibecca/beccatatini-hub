@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+/*
+ * Tailwind é só atalho para os tokens.
+ * `reference` não reemite as variáveis (os tokens já estão em :root).
+ * `--*: initial` remove a escala padrão do Tailwind: só existem as utilities abaixo,
+ * todas apontando para tokens.css. Valores arbitrários (p-[13px]) são proibidos.
+ */
+@theme inline reference {
+  --*: initial;
+
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+
+  --color-canvas: var(--surface-canvas);
+  --color-raised: var(--surface-raised);
+  --color-muted: var(--surface-muted);
+  --color-inverse: var(--surface-inverse);
+  --color-subtle: var(--border-subtle);
+  --color-ink: var(--text-primary);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-on-inverse: var(--text-on-inverse);
+  --color-accent: var(--text-accent);
+
+  --spacing-0: 0;
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+
+  --text-display-lg: var(--text-display-lg);
+  --text-display-lg--line-height: var(--leading-display-lg);
+  --text-display-md: var(--text-display-md);
+  --text-display-md--line-height: var(--leading-display-md);
+  --text-h1: var(--text-h1);
+  --text-h1--line-height: var(--leading-h1);
+  --text-h2: var(--text-h2);
+  --text-h2--line-height: var(--leading-h2);
+  --text-h3: var(--text-h3);
+  --text-h3--line-height: var(--leading-h3);
+  --text-body-lg: var(--text-body-lg);
+  --text-body-lg--line-height: var(--leading-body-lg);
+  --text-body-md: var(--text-body-md);
+  --text-body-md--line-height: var(--leading-body-md);
+  --text-body-sm: var(--text-body-sm);
+  --text-body-sm--line-height: var(--leading-body-sm);
+  --text-label: var(--text-label);
+  --text-label--line-height: var(--leading-label);
+  --text-caption: var(--text-caption);
+  --text-caption--line-height: var(--leading-caption);
+
+  --font-weight-regular: var(--weight-regular);
+  --font-weight-medium: var(--weight-medium);
+  --font-weight-semibold: var(--weight-semibold);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+}
+
+/* Base */
+html {
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-size: var(--text-body-md);
+  line-height: var(--leading-body-md);
+  font-weight: var(--weight-regular);
+}
+
+/* Playfair só em display, h1 e h2 (CLAUDE.md §4) */
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}

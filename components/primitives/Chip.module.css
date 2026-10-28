@@ -1,0 +1,57 @@
+/*
+ * Chip — filtro alternável (aria-pressed). Raio: --radius-full.
+ * Altura: 20 (line-height) + 2×7 (padding) + 2×1 (borda) = 36px.
+ * Selecionado não depende só de cor: ganha ícone de check.
+ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: calc(var(--space-2) - var(--border-width)) var(--space-4);
+  border: var(--border-width) solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
+}
+
+.icon { width: var(--space-4); height: var(--space-4); flex-shrink: 0; }
+
+.chip:hover,
+.chip[data-force="hover"] {
+  border-color: var(--text-secondary);
+  background: var(--surface-muted);
+}
+
+.chip:active,
+.chip[data-force="active"] {
+  background: var(--border-subtle);
+}
+
+.chip:focus-visible,
+.chip[data-force="focus"] {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.chip[aria-pressed="true"] {
+  padding-left: var(--space-3);
+  border-color: var(--surface-inverse);
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+}
+
+.chip:disabled {
+  border-color: var(--border-subtle);
+  background: var(--surface-muted);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}

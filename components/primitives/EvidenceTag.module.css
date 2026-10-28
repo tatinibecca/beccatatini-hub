@@ -1,0 +1,57 @@
+/*
+ * EvidenceTag — força da evidência = peso visual.
+ * Verificado (cheio, escuro) → Qualitativo → Hipótese (tracejado) → Não disponível (apagado).
+ * A diferença nunca é só cor: texto + glifo + estilo de borda.
+ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: calc(var(--space-1) - var(--border-width)) var(--space-2);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+
+.glyph { width: var(--space-3); height: var(--space-3); flex-shrink: 0; }
+
+.verified {
+  background: var(--surface-inverse);
+  border-color: var(--surface-inverse);
+  color: var(--text-on-inverse);
+}
+
+.qualitative {
+  background: var(--surface-muted);
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.hypothesis {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.unavailable {
+  background: transparent;
+  border-color: var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

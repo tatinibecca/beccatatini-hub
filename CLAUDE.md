@@ -191,6 +191,7 @@ Warning `#D9822B` e info `#3B7A8C`: validar antes de usar.
   --text-on-inverse: #F2F0EC;
   --text-accent: #9A5518;
   --text-accent-on-inverse: #F0B47A;
+  --text-accent-pink: #A02E87; /* "rosa texto" da tabela acima: texto/ícone rosa, tags */
 
   /* Ação */
   --action-primary: #9A5518;
@@ -210,11 +211,41 @@ Warning `#D9822B` e info `#3B7A8C`: validar antes de usar.
   --font-display: "Playfair Display", Georgia, serif;
   --font-body: "General Sans", system-ui, sans-serif;
 
+  /* Tipografia (rem; line-heights múltiplos de 4px) */
+  --text-display-lg: 3rem;    --leading-display-lg: 3.5rem;   /* 48/56 Playfair */
+  --text-display-md: 2.5rem;  --leading-display-md: 3rem;     /* 40/48 Playfair */
+  --text-h1: 2rem;            --leading-h1: 2.5rem;           /* 32/40 Playfair */
+  --text-h2: 1.5rem;          --leading-h2: 2rem;             /* 24/32 Playfair */
+  --text-h3: 1.25rem;         --leading-h3: 1.75rem;          /* 20/28 General Sans */
+  --text-body-lg: 1.125rem;   --leading-body-lg: 1.75rem;     /* 18/28 leitura de case */
+  --text-body-md: 1rem;       --leading-body-md: 1.5rem;      /* 16/24 padrão */
+  --text-body-sm: 0.875rem;   --leading-body-sm: 1.25rem;     /* 14/20 */
+  --text-label: 0.875rem;     --leading-label: 1.25rem;       /* 14/20 botões e nav */
+  --text-caption: 0.75rem;    --leading-caption: 1rem;        /* 12/16 só info não essencial */
+  --tracking-overline: 0.08em;
+  --weight-regular: 400; --weight-medium: 500; --weight-semibold: 600;
+  --measure: 68ch;
+
+  /* Borda */
+  --border-width: 1px;
+  --border-width-strong: 2px;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
   /* Movimento */
   --motion-fast: 120ms;
   --motion-base: 200ms;
   --motion-slow: 320ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Mobile (<768px) */
+@media (max-width: 767px) {
+  :root {
+    --text-display-lg: 2.25rem; --leading-display-lg: 2.75rem;
+    --text-display-md: 2rem;    --leading-display-md: 2.5rem;
+    --text-h1: 1.75rem;         --leading-h1: 2.25rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -223,8 +254,10 @@ Warning `#D9822B` e info `#3B7A8C`: validar antes de usar.
 ```
 
 ### Regras de uso
-- **Playfair Display:** títulos de página, títulos de case, citações. Nunca em botões, navegação, labels ou texto corrido.
-- **General Sans:** todo o resto.
+- **Playfair Display (500/600):** display, h1 e h2 — títulos de página, títulos de case. Itálico só em citações. Nunca em botões, navegação, labels ou texto corrido.
+- **General Sans:** todo o resto (h3 em diante).
+- **Texto corrido** nunca abaixo de `body-md`. Cases usam `body-lg`.
+- **Botões e labels:** `text-label` + `weight-medium`.
 - **Raio:** um raio por nível de componente. Containers `--radius-lg`, controles `--radius-sm`, chips `--radius-full`. Sem exceções.
 - **Sombras:** no máximo uma, sutil, só em elementos sobrepostos (drawer, menu). Cards ficam sem sombra.
 - **Rosa:** no máximo um ponto de rosa por tela.

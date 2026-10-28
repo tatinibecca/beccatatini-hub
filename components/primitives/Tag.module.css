@@ -1,0 +1,43 @@
+/*
+ * Tag — rótulo estático, não interativo (sem hover/foco de propósito).
+ * Raio: --radius-xs, para não ser confundida com Chip (--radius-full), que é clicável.
+ * Altura: 20 + 2×3 + 2×1 = 28px.
+ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: calc(var(--space-1) - var(--border-width)) var(--space-2);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+
+.neutral {
+  background: var(--surface-muted);
+  border-color: var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.accent {
+  background: transparent;
+  border-color: currentColor;
+  color: var(--text-accent);
+}
+
+/* Rosa: no máximo um ponto de rosa por tela (CLAUDE.md §4) */
+.pink {
+  background: transparent;
+  border-color: currentColor;
+  color: var(--text-accent-pink);
+}
+
+.inverse {
+  background: var(--surface-inverse);
+  border-color: var(--surface-inverse);
+  color: var(--text-on-inverse);
+}
