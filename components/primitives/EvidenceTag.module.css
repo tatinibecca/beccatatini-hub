@@ -25,6 +25,12 @@
   color: var(--text-on-inverse);
 }
 
+/* Sobre superfície inversa: contorno, glifo cheio mantém a hierarquia */
+:global([data-surface="inverse"]) .verified {
+  background: transparent;
+  border-color: var(--text-on-inverse);
+}
+
 .qualitative {
   background: var(--surface-muted);
   border-color: var(--text-secondary);

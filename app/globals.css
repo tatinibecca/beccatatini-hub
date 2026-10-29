@@ -93,3 +93,10 @@ h1, h2 {
   outline: var(--focus-ring-width) solid var(--focus-ring);
   outline-offset: var(--focus-ring-offset);
 }
+
+/* Superfície inversa (sidebar, painel verde): o anel padrão some sobre o verde */
+[data-surface="inverse"] {
+  --focus-ring: var(--focus-ring-on-inverse);
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+}

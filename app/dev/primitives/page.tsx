@@ -42,7 +42,8 @@ const colors = [
   "--brand-orange", "--brand-pink", "--brand-forest",
   "--surface-canvas", "--surface-raised", "--surface-muted", "--surface-inverse", "--border-subtle",
   "--text-primary", "--text-secondary", "--text-on-inverse", "--text-accent", "--text-accent-on-inverse", "--text-accent-pink",
-  "--action-primary", "--action-primary-hover", "--action-on-primary", "--focus-ring",
+  "--action-primary", "--action-primary-hover", "--action-on-primary", "--focus-ring", "--focus-ring-on-inverse",
+  "--feedback-success", "--feedback-error", "--feedback-info",
 ];
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
@@ -215,9 +216,10 @@ export default function PrimitivesPage() {
       </Section>
 
       <Section id="inversa" title="Sobre superfície inversa">
-        <div className="dev-inverse flex flex-wrap items-center gap-4">
+        <div data-surface="inverse" className="dev-inverse flex flex-wrap items-center gap-4">
           <EvidenceTag evidence="verified" />
           <Tag variant="inverse">Rótulo</Tag>
+          <Chip data-force="focus">Foco sobre o verde</Chip>
           <span style={{ color: "var(--text-accent-on-inverse)" }} className="font-medium">
             Texto de destaque sobre verde
           </span>

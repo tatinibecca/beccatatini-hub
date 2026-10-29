@@ -41,3 +41,9 @@
   border-color: var(--surface-inverse);
   color: var(--text-on-inverse);
 }
+
+/* Sobre superfície inversa, a Tag inversa vira contorno para não se fundir ao fundo */
+:global([data-surface="inverse"]) .inverse {
+  background: transparent;
+  border-color: var(--text-on-inverse);
+}

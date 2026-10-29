@@ -81,7 +81,7 @@ Cada mecânica tem um **porquê**. Se não cumprir o porquê, não entra.
 - Grupo **Becca**: Início · Trabalho · Trajetória · **Sobre mim**, com 3 subitens: *Em que acredito* · *Fora do trabalho* · *Como é trabalhar comigo* (inclui feedbacks de colegas, só com autorização de cada pessoa).
 - **Tablet (768–1023px):** trilho de ícones com rótulo em tooltip e no `aria-label`.
 - **Mobile (<768px):** topbar com nome + botão de menu que abre a navegação em painel. ⏳ alternativa: bottom nav com no máximo 5 itens.
-- Topbar com breadcrumb e **um único CTA de contato** (nome a definir: ⏳ "Fale comigo" ou outro). O mesmo nome em todo o site.
+- Topbar com breadcrumb e **um único CTA de contato: "Vamos conversar"** (aprovado 29/10). O mesmo nome em todo o site.
 - Skip link "Ir para o conteúdo" como primeiro elemento focável.
 - Item ativo da navegação marcado com `aria-current="page"` e com indicação que não depende só de cor.
 - **Porquê:** o site se comporta como produto, com navegação estável entre áreas.
@@ -174,7 +174,7 @@ Busca com atalho de teclado (⌘K), saudação por horário, versão em inglês.
 
 Sobre o verde `#153C27`: texto `#F2F0EC` (10,8 ✅); acento `#F0B47A` (6,7 ✅). **`#C57123` sobre o verde dá 3,4 ❌.**
 
-Warning `#D9822B` e info `#3B7A8C`: validar antes de usar.
+Feedback aprovado (29/10): sucesso `#4E6E38` (5,11 ✅), erro `#B83A38` (4,99 ✅), info `#2F6A7A` (5,33 ✅). **Sem token de warning**: para passar AA ele ficaria igual ao laranja de ação; alertas usam ícone + texto.
 
 ### `styles/tokens.css` (esqueleto)
 
@@ -205,6 +205,12 @@ Warning `#D9822B` e info `#3B7A8C`: validar antes de usar.
   --action-primary-hover: #8E4A00;
   --action-on-primary: #FFFFFF;
   --focus-ring: #153C27;
+  --focus-ring-on-inverse: #F0B47A; /* = --text-accent-on-inverse, 6,74 sobre o verde */
+
+  /* Feedback (contraste conferido sobre canvas; sem warning: ver CLAUDE.md §4) */
+  --feedback-success: #4E6E38; /* 5,11 sobre canvas · branco sobre: 5,81 */
+  --feedback-error: #B83A38;   /* 4,99 sobre canvas · branco sobre: 5,68 */
+  --feedback-info: #2F6A7A;    /* 5,33 sobre canvas · branco sobre: 6,06 */
 
   /* Espaço (8pt, sub-grid 4) */
   --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
@@ -272,19 +278,20 @@ Warning `#D9822B` e info `#3B7A8C`: validar antes de usar.
 - Labels e botões: `--text-label` + `--weight-medium`.
 
 ### Regras de uso
-- **Playfair Display:** títulos de página, títulos de case, citações. Nunca em botões, navegação, labels ou texto corrido.
-- **General Sans:** todo o resto.
-- **Raio:** um raio por nível de componente. Containers `--radius-lg`, controles `--radius-sm`, chips `--radius-full`. Sem exceções.
+- **Playfair** nunca em botões, navegação, labels ou texto corrido.
+- **Raio:** um raio por nível de componente. Containers `--radius-lg`, controles `--radius-sm`, chips `--radius-full`, tags (estáticas) `--radius-xs`. Sem exceções.
+- **Estados:** pressionado usa a mesma cor do hover (sem token próprio). Hover sobre o canvas nunca usa `--surface-muted` (invisível); usar `--border-subtle`. Link visitado não muda de cor.
+- **Superfície inversa:** todo container verde recebe `data-surface="inverse"`. Dentro dele o foco vira `--focus-ring-on-inverse` e Tag inversa / EvidenceTag verificada viram contorno.
 - **Sombras:** no máximo uma, sutil, só em elementos sobrepostos (drawer, menu). Cards ficam sem sombra.
 - **Rosa:** no máximo um ponto de rosa por tela.
-- **Ícones:** um único conjunto, traço consistente. Nada de sparkles, estrelas ou emojis decorativos.
+- **Ícones:** um único conjunto, **Lucide** (traço 2), registrado em `components/primitives/Icon.tsx`. Nada de sparkles, estrelas ou emojis decorativos.
 
 ---
 
 ## 5. Acessibilidade (critério de aceite de toda etapa)
 
 - WCAG 2.2 AA: contraste conforme a tabela acima.
-- Tudo operável por teclado, com foco visível (anel de 2px em `--focus-ring`, offset 2px).
+- Tudo operável por teclado, com foco visível (anel de 2px em `--focus-ring`, offset 2px; `--focus-ring-on-inverse` sobre o verde).
 - Alvos de toque ≥ 24×24px (ideal 44×44 no mobile).
 - Hierarquia de headings sem saltos; um `h1` por página.
 - `prefers-reduced-motion` respeitado.
@@ -313,7 +320,7 @@ Warning `#D9822B` e info `#3B7A8C`: validar antes de usar.
 
 1. Site sai do Framer de vez?
 2. Paleta da seção 4 aprovada?
-3. Nome único do CTA de contato.
+3. ~~Nome único do CTA de contato.~~ ✅ "Vamos conversar" (29/10).
 4. Navegação mobile: painel ou bottom nav.
 5. Toggle Pessoas/Empresas: entra ou não, e como funciona.
 6. Quais cases e clientes podem ser nomeados (NDA).

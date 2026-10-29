@@ -29,6 +29,12 @@
   --action-primary-hover: #8E4A00;
   --action-on-primary: #FFFFFF;
   --focus-ring: #153C27;
+  --focus-ring-on-inverse: #F0B47A; /* = --text-accent-on-inverse, 6,74 sobre o verde */
+
+  /* Feedback (contraste conferido sobre canvas; sem warning: ver CLAUDE.md §4) */
+  --feedback-success: #4E6E38; /* 5,11 sobre canvas · branco sobre: 5,81 */
+  --feedback-error: #B83A38;   /* 4,99 sobre canvas · branco sobre: 5,68 */
+  --feedback-info: #2F6A7A;    /* 5,33 sobre canvas · branco sobre: 6,06 */
 
   /* Espaço (8pt, sub-grid 4) */
   --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;

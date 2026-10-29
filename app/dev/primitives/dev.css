@@ -34,8 +34,6 @@
 }
 
 .dev-inverse {
-  background: var(--surface-inverse);
-  color: var(--text-on-inverse);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
 }
