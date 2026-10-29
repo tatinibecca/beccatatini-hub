@@ -76,7 +76,9 @@ A referência de estrutura e mecânica é o portfólio de Carmen Rincon (carmen-
 Cada mecânica tem um **porquê**. Se não cumprir o porquê, não entra.
 
 ### 3.1 App shell
-- **Desktop (≥1024px):** sidebar fixa à esquerda, agrupada em seções (Becca · Ideias · Aprender · Colaborar). Recolhível para trilho de ícones; o estado fica salvo em `localStorage` (com `try/catch`).
+- **Direção aprovada (29/10/2026): Proposta A "Acervo"**, com a sidebar da proposta C.
+- **Desktop (≥1024px):** sidebar fixa à esquerda, **em verde `--surface-inverse`** (texto `--text-on-inverse`, rótulos de grupo e foco em `--text-accent-on-inverse`), agrupada em seções (Becca · Ideias · Aprender · Colaborar). Recolhível para trilho de ícones; o estado fica salvo em `localStorage` (com `try/catch`).
+- Grupo **Becca**: Início · Trabalho · Trajetória · **Sobre mim**, com 3 subitens: *Em que acredito* · *Fora do trabalho* · *Como é trabalhar comigo* (inclui feedbacks de colegas, só com autorização de cada pessoa).
 - **Tablet (768–1023px):** trilho de ícones com rótulo em tooltip e no `aria-label`.
 - **Mobile (<768px):** topbar com nome + botão de menu que abre a navegação em painel. ⏳ alternativa: bottom nav com no máximo 5 itens.
 - Topbar com breadcrumb e **um único CTA de contato** (nome a definir: ⏳ "Fale comigo" ou outro). O mesmo nome em todo o site.
@@ -86,8 +88,12 @@ Cada mecânica tem um **porquê**. Se não cumprir o porquê, não entra.
 
 ### 3.2 Home "Visão geral"
 - **Desktop 1440×900 e 1280×800: cabe em uma viewport, sem scroll.** Abaixo disso, scroll normal.
-- No máximo **5 módulos**. Nada de card dentro de card.
-- Módulos: apresentação (frase de posicionamento + retrato real) · Trabalho em destaque (3 cases) · Agora · Caderno de campo · Escrita recente.
+- **3 módulos (aprovado):** nada de card dentro de card.
+  1. **Apresentação:** título "Olá! Sou Becca, Product Designer.", UMA frase de apresentação, retrato real em arco e um único botão **"Como é trabalhar comigo"** (leva a Sobre mim).
+  2. **Agora:** projeto atual, comunidades e botão **"Ver trajetória"** (leva ao currículo e às empresas). Mostra "Atualizado em [data]".
+  3. **Trabalho em destaque:** painel verde que ocupa o resto da viewport, com 3 cases e muito respiro. **Sem botão "Explorar o case"**: o card inteiro é o link, com microinteração no hover e no foco (zoom leve na imagem, card sobe 3px, seta circular no canto, título sublinhado). Respeitar `prefers-reduced-motion`.
+- **Caderno de campo e Escrita recente NÃO ficam na home.** Vivem em `/escrita` e `/trajetoria`.
+- Imagens dos cases: usar placeholders marcados `[PENDENTE: tela real]` até a Becca enviar as telas reais.
 - **Porquê:** a home é uma visão geral, não um resumo de tudo.
 
 ### 3.3 Módulo "Agora"
@@ -95,7 +101,8 @@ Cada mecânica tem um **porquê**. Se não cumprir o porquê, não entra.
 - Se a data tiver mais de 60 dias, o módulo mostra a data em destaque em vez de esconder. Nada de "tempo real" se não for.
 - **Porquê:** transmitir que existe uma pessoa ativa ali, com honestidade.
 
-### 3.4 Módulo "Caderno de campo"
+### 3.4 Módulo "Caderno de campo" (fora da home)
+- Vive em `/escrita` ou `/trajetoria`, não na Visão geral.
 - Lê `content/field-notes.json`: o que a Becca está estudando, construindo e escrevendo agora. 2 a 4 itens, cada um com uma linha.
 - **Porquê:** mostrar o site como produto em evolução. É a versão autoral de um "status de build".
 
@@ -211,24 +218,28 @@ Warning `#D9822B` e info `#3B7A8C`: validar antes de usar.
   --font-display: "Playfair Display", Georgia, serif;
   --font-body: "General Sans", system-ui, sans-serif;
 
-  /* Tipografia (rem; line-heights múltiplos de 4px) */
-  --text-display-lg: 3rem;    --leading-display-lg: 3.5rem;   /* 48/56 Playfair */
-  --text-display-md: 2.5rem;  --leading-display-md: 3rem;     /* 40/48 Playfair */
-  --text-h1: 2rem;            --leading-h1: 2.5rem;           /* 32/40 Playfair */
-  --text-h2: 1.5rem;          --leading-h2: 2rem;             /* 24/32 Playfair */
-  --text-h3: 1.25rem;         --leading-h3: 1.75rem;          /* 20/28 General Sans */
-  --text-body-lg: 1.125rem;   --leading-body-lg: 1.75rem;     /* 18/28 leitura de case */
-  --text-body-md: 1rem;       --leading-body-md: 1.5rem;      /* 16/24 padrão */
-  --text-body-sm: 0.875rem;   --leading-body-sm: 1.25rem;     /* 14/20 */
-  --text-label: 0.875rem;     --leading-label: 1.25rem;       /* 14/20 botões e nav */
-  --text-caption: 0.75rem;    --leading-caption: 1rem;        /* 12/16 só info não essencial */
-  --tracking-overline: 0.08em;
-  --weight-regular: 400; --weight-medium: 500; --weight-semibold: 600;
-  --measure: 68ch;
+  /* Escala tipográfica (rem respeita o zoom de fonte do navegador; line-heights múltiplos de 4px) */
+  --text-display-lg: 3rem;     --leading-display-lg: 3.5rem;   /* 48/56 Playfair */
+  --text-display-md: 2.5rem;   --leading-display-md: 3rem;     /* 40/48 Playfair */
+  --text-h1: 2rem;             --leading-h1: 2.5rem;           /* 32/40 Playfair */
+  --text-h2: 1.5rem;           --leading-h2: 2rem;             /* 24/32 Playfair */
+  --text-h3: 1.25rem;          --leading-h3: 1.75rem;          /* 20/28 General Sans */
+  --text-body-lg: 1.125rem;    --leading-body-lg: 1.75rem;     /* 18/28 leitura de case */
+  --text-body-md: 1rem;        --leading-body-md: 1.5rem;      /* 16/24 padrão */
+  --text-body-sm: 0.875rem;    --leading-body-sm: 1.25rem;     /* 14/20 */
+  --text-label: 0.875rem;      --leading-label: 1.25rem;       /* 14/20 botões, nav */
+  --text-caption: 0.75rem;     --leading-caption: 1rem;        /* 12/16 só info não essencial */
+  --tracking-overline: 0.08em;                                  /* overline: 12px, 600, maiúsculas */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  --measure: 68ch;             /* largura máxima de texto corrido */
 
   /* Borda */
-  --border-width: 1px;
-  --border-width-strong: 2px;
+  --border-width: 1px;         /* padrão: inputs, outlined, divisórias */
+  --border-width-strong: 2px;  /* selecionado, ativo */
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
 
@@ -239,12 +250,12 @@ Warning `#D9822B` e info `#3B7A8C`: validar antes de usar.
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* Mobile (<768px) */
+/* Mobile: só os displays e o h1 encolhem */
 @media (max-width: 767px) {
   :root {
-    --text-display-lg: 2.25rem; --leading-display-lg: 2.75rem;
-    --text-display-md: 2rem;    --leading-display-md: 2.5rem;
-    --text-h1: 1.75rem;         --leading-h1: 2.25rem;
+    --text-display-lg: 2.25rem; --leading-display-lg: 2.75rem;  /* 36/44 */
+    --text-display-md: 2rem;    --leading-display-md: 2.5rem;   /* 32/40 */
+    --text-h1: 1.75rem;         --leading-h1: 2.25rem;          /* 28/36 */
   }
 }
 
@@ -253,11 +264,16 @@ Warning `#D9822B` e info `#3B7A8C`: validar antes de usar.
 }
 ```
 
+### Regras tipográficas
+- **Playfair Display** (500 ou 600; itálico só em citações): display, h1, h2.
+- **General Sans** (400, 500, 600): h3 para baixo, UI e todo texto corrido.
+- Texto corrido nunca abaixo de `--text-body-md`. Páginas de case usam `--text-body-lg`.
+- `--text-caption` só para metadados não essenciais (datas, créditos de imagem).
+- Labels e botões: `--text-label` + `--weight-medium`.
+
 ### Regras de uso
-- **Playfair Display (500/600):** display, h1 e h2 — títulos de página, títulos de case. Itálico só em citações. Nunca em botões, navegação, labels ou texto corrido.
-- **General Sans:** todo o resto (h3 em diante).
-- **Texto corrido** nunca abaixo de `body-md`. Cases usam `body-lg`.
-- **Botões e labels:** `text-label` + `weight-medium`.
+- **Playfair Display:** títulos de página, títulos de case, citações. Nunca em botões, navegação, labels ou texto corrido.
+- **General Sans:** todo o resto.
 - **Raio:** um raio por nível de componente. Containers `--radius-lg`, controles `--radius-sm`, chips `--radius-full`. Sem exceções.
 - **Sombras:** no máximo uma, sutil, só em elementos sobrepostos (drawer, menu). Cards ficam sem sombra.
 - **Rosa:** no máximo um ponto de rosa por tela.
